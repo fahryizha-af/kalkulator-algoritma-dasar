@@ -1,5 +1,5 @@
 import os
-from data import data_alat, data_penjualan, bersih, buat_nomor_transaksi, validasi_angka, total_rekursif
+from data import data_alat, data_penjualan, bersih, buat_nomor_transaksi, validasi_angka
 from tampilan import tampilkan_daftar_pembeli, tampilkan_rincian, tampilkan_riwayat_pembelian
 
 def jalankan_menu_user(userLogin):
@@ -99,7 +99,7 @@ def jalankan_menu_user(userLogin):
             print("RIWAYAT PEMBELIAN SAYA\n")
             daftarTotalBayar = tampilkan_riwayat_pembelian(userLogin)
             if len(daftarTotalBayar) > 0:
-                totalBelanja = total_rekursif(daftarTotalBayar)
+                totalBelanja = sum(daftarTotalBayar)
                 print(f"\nTotal belanja saya : Rp{totalBelanja}\n")
             else:
                 print("Anda belum pernah membeli alat.\n")
@@ -109,9 +109,7 @@ def jalankan_menu_user(userLogin):
             print("\nLogout berhasil.\n")
             input("Tekan Enter untuk kembali ke menu utama...")
             return
-#tes
+
         else:
             print("\nPilihan tidak valid. Masukkan angka 1-4.\n")
             input("Tekan Enter untuk kembali ke menu...")
-
-            print(23)
