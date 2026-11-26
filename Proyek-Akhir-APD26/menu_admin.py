@@ -275,3 +275,5 @@ def jalankan_menu_admin():
         else:
             print("\nPilihan tidak valid. Masukkan angka 1-6.\n")
             input("Tekan Enter untuk kembali ke menu...")
+            
+print ("okesii")
