@@ -26,43 +26,24 @@ def jalankan_menu_admin():
             os.system(bersih)
             print("TAMBAH ALAT BARU\n")
             print("(Ketik 'batal' kapan saja untuk kembali ke menu admin)\n")
-            print("Jenis alat yang tersedia:")
-            jenis_keys = list(jenisAlat.keys())
-            tampilkan_jenis_alat()
-            nomorJenisBaru = len(jenisAlat) + 1
-            print(f"{nomorJenisBaru}. Tambah jenis alat baru")
 
-            pilihJenis = input(f"\nPilih nomor jenis alat (1-{nomorJenisBaru}) : ").strip()
-            if cek_batal(pilihJenis):
+            namaJenis = input("Jenis alat : ").strip()
+            if cek_batal(namaJenis):
                 batal_kembali()
                 continue
-            try:
-                pilihJenis = validasi_angka(pilihJenis, 1, nomorJenisBaru)
-            except ValueError as e:
-                print(f"\nNomor jenis tidak valid, {e}\n")
+            if namaJenis == "":
+                print("\nJenis alat tidak boleh kosong.\n")
                 input("Tekan Enter untuk kembali ke menu...")
                 continue
 
-            jenisBaru = False
-            if pilihJenis == nomorJenisBaru:
-                jenisBaru = True
-                namaJenis = input("\nNama jenis baru : ").strip()
-                if cek_batal(namaJenis):
-                    batal_kembali()
-                    continue
-                if namaJenis == "":
-                    print("\nNama jenis tidak boleh kosong.\n")
-                    input("Tekan Enter untuk kembali ke menu...")
-                    continue
-                jenis_sudah_ada = False
-                for j_name in jenisAlat:
-                    if j_name.lower() == namaJenis.lower():
-                        jenis_sudah_ada = True
-                if jenis_sudah_ada:
-                    print(f"\nJenis '{namaJenis}' sudah ada. Pilih dari daftar jenis.\n")
-                    input("Tekan Enter untuk kembali ke menu...")
-                    continue
+            jenisBaru = True
+            for j_name in jenisAlat:
+                if j_name.lower() == namaJenis.lower():
+                    namaJenis = j_name
+                    jenisBaru = False
+                    break
 
+            if jenisBaru:
                 modalInput = input("Modal per unit (Rp) : ").strip()
                 if cek_batal(modalInput):
                     batal_kembali()
@@ -89,9 +70,9 @@ def jalankan_menu_admin():
                     input("Tekan Enter untuk kembali ke menu...")
                     continue
             else:
-                namaJenis = jenis_keys[pilihJenis - 1]
                 modal = jenisAlat[namaJenis]["modal"]
                 harga = jenisAlat[namaJenis]["harga"]
+                print(f"\nJenis '{namaJenis}' sudah terdaftar. Modal Rp{modal} dan harga jual Rp{harga} mengikuti jenis ini.\n")
 
             namaBaru = input("Nama alat baru : ").strip()
             if cek_batal(namaBaru):
@@ -275,5 +256,3 @@ def jalankan_menu_admin():
         else:
             print("\nPilihan tidak valid. Masukkan angka 1-6.\n")
             input("Tekan Enter untuk kembali ke menu...")
-            
-print ("okesii")

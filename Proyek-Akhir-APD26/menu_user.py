@@ -80,7 +80,7 @@ def jalankan_menu_user(userLogin):
                     "total_bayar": totalBayar,
                     "laba": alatDibeli["laba"] * jumlahBeli
                 }
-                print("\nPembelian berhasil:")
+                print("\nPembelian berhasil berikut struk anda :")
                 tampilkan_rincian([
                     ("No. transaksi", nomorTransaksi),
                     ("Alat", f"{namaAlatDibeli} ({alatDibeli['jenis']})"),
